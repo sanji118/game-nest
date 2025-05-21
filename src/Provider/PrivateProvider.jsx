@@ -11,7 +11,7 @@ const PrivateProvider = ({children}) => {
         return children;
     }
   return (
-    <Navigate to='/register'></Navigate>
+    <Navigate to='/login'></Navigate>
   )
 }
 

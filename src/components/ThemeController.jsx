@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const ThemeController = () => {
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+
+  useEffect(()=>{
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [])
+
+  const toggleTheme = () =>{
+    setTheme(prev => prev === 'light' ? 'dark' : 'light')
+  }
   return (
     <div>
         <label class="swap swap-rotate">
             
-            <input type="checkbox" class="theme-controller" value="synthwave" />
+            <input type="checkbox" onChange={toggleTheme} checked={theme === 'dark'}/>
 
             {/**sun icon */}
             <svg
-                class="swap-off h-10 w-10 fill-current"
+                class="swap-off h-10 w-8 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24">
                 <path
@@ -18,7 +29,7 @@ const ThemeController = () => {
 
             {/**-- moon icon -->*/}
             <svg
-                class="swap-on h-10 w-10 fill-current"
+                class="swap-on h-10 w-8 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24">
                 <path

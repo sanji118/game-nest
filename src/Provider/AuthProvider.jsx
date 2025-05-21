@@ -2,7 +2,8 @@ import { createContext, useEffect, useState } from "react"
 import auth from "../components/firebase.init";
 import { GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(null);
+
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
@@ -64,4 +65,4 @@ const AuthProvider = ({children}) => {
   )
 }
 
-export default AuthProvider
+export default AuthProvider;
