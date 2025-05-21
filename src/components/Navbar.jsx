@@ -5,7 +5,7 @@ import { useContext } from "react"
 import { AuthContext } from "../Provider/AuthProvider"
 
 const Navbar = () => {
-    
+    const {user} = useContext(AuthContext);
     
   return (
     <>
@@ -19,8 +19,16 @@ const Navbar = () => {
                 <NavLink to={'/'} className={'hover:text-violet-600 text-gray-500 font-semibold'} >Home</NavLink>
                 <NavLink to={'/reviews'} className={'hover:text-violet-600 text-gray-500 font-semibold'}>All Reviews</NavLink>
                 <div><ThemeController></ThemeController></div>
-                <NavLink to={'/login'} className={'btn bg-violet-600 text-white'}>Login</NavLink>
-                <NavLink to={'/register'} className={'btn bg-violet-600 text-white'}>Register</NavLink>
+                {
+                    user? 
+                    (
+                        <div className="flex gap-5"><NavLink to={'/login'} className={'btn bg-violet-600 text-white'}>Login</NavLink>
+                        <NavLink to={'/register'} className={'btn bg-violet-600 text-white'}>Register</NavLink>
+                        </div>
+                    ):(
+                       <NavLink className={'btn bg-violet-600 text-white'}>LogOut</NavLink> 
+                    )
+                }
             </div>
         </div>
     </div>
