@@ -1,14 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import AddReviews from "../layouts/AddReviews";
-import ReviewDetails from "../components/ReviewDetails";
+import ReviewDetails from "../components/ReviewPage/ReviewDetails";
 import AllReviews from "../layouts/AllReviews";
 import MyReviews from "../layouts/MyReviews";
-import UpdateReview from "../components/UpdateReview";
+import UpdateReview from "../components/ReviewPage/UpdateReview";
 import GameWatchList from "../layouts/GameWatchList";
 import NoContentFound from "../layouts/NoContentFound";
 import Login from "../auth/Login";
 import Register from "../auth/Register";
+import PrivateProvider from "../Provider/PrivateProvider";
 
 export const Router = createBrowserRouter([
     {
@@ -17,7 +18,7 @@ export const Router = createBrowserRouter([
     },
     {
         path: '/addReview',
-        Component: AddReviews,
+        element: <PrivateProvider><AddReviews></AddReviews></PrivateProvider>
     },
     {
         path: '/review/:id',
@@ -29,15 +30,15 @@ export const Router = createBrowserRouter([
     },
     {
         path:'/myReviews',
-        Component: MyReviews,
+        element: <PrivateProvider><MyReviews></MyReviews></PrivateProvider>
     },
     {
         path: '/updateReview/:id',
-        Component: UpdateReview
+        element: <UpdateReview></UpdateReview>
     },
     {
         path: '/myWatchlist',
-        Component: GameWatchList
+        element: <PrivateProvider><GameWatchList></GameWatchList></PrivateProvider>
     },
     {
         path: '/login',
