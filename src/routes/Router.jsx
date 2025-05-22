@@ -11,10 +11,14 @@ import Login from "../auth/Login";
 import Register from "../auth/Register";
 import PrivateProvider from "../Provider/PrivateProvider";
 
+
+
+
 export const Router = createBrowserRouter([
     {
         path: '/',
-        Component: MainLayout,
+        element: <MainLayout/>,
+        loader: ()=> fetch('http://localhost:5000/reviews')
     },
     {
         path: '/addReview',
@@ -26,7 +30,11 @@ export const Router = createBrowserRouter([
     },
     {
         path: '/reviews',
-        Component: AllReviews,
+        Component: AllReviews
+    },
+    {
+        path:'/details',
+        Component: ReviewDetails
     },
     {
         path:'/myReviews',
