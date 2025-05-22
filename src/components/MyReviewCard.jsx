@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiEdit, FiTrash2, FiEye } from 'react-icons/fi';
+import Swal from 'sweetalert2';
 
-const MyReviewCard = ({ review }) => {
+const MyReviewCard = ({ setReviews, review }) => {
   const {
     _id,
     coverImage,
@@ -16,7 +17,32 @@ const MyReviewCard = ({ review }) => {
 
   const userName = userEmail?.split("@")[0] || "";
   const handleDelete = id =>{
-    console.log(id)
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`http://localhost:5000/reviews/${id}`,{
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.deletedCount > 0){
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                    setReviews(prev => prev.filter(r => r._id !== id));
+                }
+            })
+        }
+    });
   }
 
   return (

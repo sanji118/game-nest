@@ -1,19 +1,19 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom"
 import { AuthContext } from "../Provider/AuthProvider";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import NoContentFound from "./NoContentFound";
 import MyReviewCard from "../components/MyReviewCard";
 import { FiPlus } from "react-icons/fi";
+import NoReviewCard from "../components/NoReviewCard";
 
 
 const MyReviews = () => {
-  const reviews = useLoaderData();
   const {user} = useContext(AuthContext);
-  const myReviews = reviews.filter(review=>{
+  const myReviews = useLoaderData().filter(review=>{
     return review.userEmail === user.email;
   })
+  const [reviews, setReviews] = useState(myReviews);
   
   return (
     <div>
@@ -26,11 +26,15 @@ const MyReviews = () => {
           </button>
         </div>
         {
-          myReviews.length === 0 ? (
-            <NoContentFound></NoContentFound>
+          reviews.length === 0 ? (
+            <NoReviewCard></NoReviewCard>
           ) : (
-            myReviews.map(review =>(
-              <MyReviewCard key={review._id} review={review}></MyReviewCard>
+            reviews.map(review =>(
+              <MyReviewCard 
+              key={review._id} 
+              setReviews={setReviews} 
+              review={review}
+              ></MyReviewCard>
             ))
           )
         }
