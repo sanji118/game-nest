@@ -12,7 +12,8 @@ const HighRatingCard = ({review}) => {
         genre,
         userEmail
     } = review;
-    return (
+    return (<>
+
         <div className="group transition-all duration-300 ease-in-out max-w-sm hover:max-w-md bg-base-100 rounded-xl shadow-md overflow-hidden border border-gray-200 ">
             <div className="relative">
                 <img
@@ -48,6 +49,7 @@ const HighRatingCard = ({review}) => {
                 </Link>
             </div>
         </div>
+        </>
     );
 }
 
