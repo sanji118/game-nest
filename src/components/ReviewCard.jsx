@@ -14,7 +14,8 @@ const ReviewCard = ({review}) => {
         genre,
         userEmail
     } = review;
-    const userName = userEmail.split("@")[0];
+    const userName = userEmail?.split("@")[0] || "";
+
     return (<>
 
         <div className="group transition-all duration-300 ease-in-out max-w-sm hover:max-w-md bg-base-100 rounded-xl shadow-md overflow-hidden border border-gray-200 ">
@@ -44,7 +45,7 @@ const ReviewCard = ({review}) => {
                     Reviewed by { userName}
                 </p>
                 <p className="text-sm text-gray-600 line-clamp-3 py-2">
-                {description.slice(0, 100)}.....
+                {description?.slice(0, 100)}.....
                 </p>
 
                 <Link to={`/details/${_id}`}>
