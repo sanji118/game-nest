@@ -7,7 +7,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 
 const UpdateReview = () => {
-  const {title, coverImage ,rating, year, genre, userEmail, userName, description, trending,  date} = useLoaderData();
+  const {_id, title, coverImage ,rating, year, genre, userEmail, userName, description, trending,  date} = useLoaderData();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
@@ -16,11 +16,16 @@ const UpdateReview = () => {
     e.preventDefault();
     const form = e.target;
     const formdata = new FormData(form);
-    const updatedReview = Object.fromEntries(formdata.entries());
+    const updatedReview = {
+      ...Object.fromEntries(formdata.entries()),
+      trending,
+      date,
+      rating
+    };
 
     fetch(`http://localhost:5000/reviews/${_id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { "content-type": "application/json" },
       body: JSON.stringify(updatedReview),
     })
       .then((res) => res.json())
@@ -48,8 +53,7 @@ const UpdateReview = () => {
               <input
                 type="text"
                 name="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                defaultValue={title}
                 className="input input-bordered w-full"
                 required
               />
@@ -59,9 +63,9 @@ const UpdateReview = () => {
               <label className="label font-semibold">Game Cover Image URL *</label>
               <input
                 type="url"
-                name="coverUrl"
-                value={coverImage}
-                onChange={(e) => setCoverImage(e.target.value)}
+                name="coverImage"
+                defaultValue={coverImage}
+                
                 className="input input-bordered w-full"
                 required
               />
@@ -76,11 +80,10 @@ const UpdateReview = () => {
                     <FaStar
                       key={star}
                       className={`cursor-pointer text-xl ${star <= rating ? "text-yellow-400" : "text-gray-300"}`}
-                      onClick={() => setRating(star)}
                     />
                   );
                 })}
-                <input type="hidden" name="rating" value={rating} />
+                <input type="hidden" name="rating" defaultValue={rating} />
                 <span className="ml-2 font-medium">{rating}.0</span>
               </div>
             </div>
@@ -90,8 +93,7 @@ const UpdateReview = () => {
               <input
                 type="number"
                 name="year"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
+                defaultValue={year}
                 className="input input-bordered w-full"
                 required
               />
@@ -101,8 +103,7 @@ const UpdateReview = () => {
               <label className="label font-semibold">Genre *</label>
               <select
                 name="genre"
-                value={genre}
-                onChange={(e) => setGenre(e.target.value)}
+                defaultValue={genre}
                 className="select select-bordered w-full"
                 required
               >
@@ -120,7 +121,7 @@ const UpdateReview = () => {
               <label className="label font-semibold">User Email</label>
               <input
                 type="email"
-                name="email"
+                name="userEmail"
                 value={user.email}
                 readOnly
                 className="input input-bordered w-full bg-gray-100"
@@ -131,7 +132,7 @@ const UpdateReview = () => {
               <label className="label font-semibold">User Name</label>
               <input
                 type="text"
-                name="username"
+                name="userName"
                 value={user.displayName}
                 readOnly
                 className="input input-bordered w-full bg-gray-100"
@@ -142,8 +143,7 @@ const UpdateReview = () => {
               <label className="label font-semibold">Review Description *</label>
               <textarea
                 name="description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                defaultValue={description}
                 className="textarea textarea-bordered w-full"
                 rows="5"
                 required
