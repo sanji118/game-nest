@@ -33,7 +33,7 @@ export const Router = createBrowserRouter([
         Component: AllReviews
     },
     {
-        path:'/details',
+        path:'/details/:id',
         Component: ReviewDetails
     },
     {

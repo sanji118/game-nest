@@ -42,7 +42,7 @@ const HighRatingCard = ({review}) => {
                 {description.slice(0, 100)}.....
                 </p>
 
-                <Link to={'/details'}>
+                <Link to={`/details/${_id}`}>
                 <button className="btn bg-violet-600 text-white btn-block rounded-lg">
                     Explore Details
                 </button>
