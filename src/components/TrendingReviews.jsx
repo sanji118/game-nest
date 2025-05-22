@@ -17,7 +17,7 @@ const TrendingReviews = ({ reviews }) => {
           </div>
 
           {/** swap-on */}
-          <div className="swap-on text-white p-4 w-72 rounded-lg shadow h-44 flex items-center justify-center font-bold text-xl" style={{
+          <div className="swap-on text-white p-4 w-72 md:w-64 rounded-lg shadow h-44 flex items-center justify-center font-bold text-xl" style={{
                 backgroundImage: `url(${review.coverImage})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
