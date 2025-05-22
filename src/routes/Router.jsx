@@ -30,11 +30,13 @@ export const Router = createBrowserRouter([
     },
     {
         path: '/reviews',
-        Component: AllReviews
+        element: <AllReviews></AllReviews>,
+        loader: ()=> fetch('http://localhost:5000/reviews')
     },
     {
         path:'/details/:id',
-        Component: ReviewDetails
+        element: <ReviewDetails></ReviewDetails>,
+        loader: ({params})=> fetch(`http://localhost:5000/reviews/${params.id}`)
     },
     {
         path:'/myReviews',

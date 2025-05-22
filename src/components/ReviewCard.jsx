@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
-const HighRatingCard = ({review}) => {
+const ReviewCard = ({review}) => {
+    const{ user} = useContext(AuthContext);
     const {
         _id,
         coverImage,
@@ -12,6 +14,7 @@ const HighRatingCard = ({review}) => {
         genre,
         userEmail
     } = review;
+    const userName = userEmail.split("@")[0];
     return (<>
 
         <div className="group transition-all duration-300 ease-in-out max-w-sm hover:max-w-md bg-base-100 rounded-xl shadow-md overflow-hidden border border-gray-200 ">
@@ -19,7 +22,7 @@ const HighRatingCard = ({review}) => {
                 <img
                 src={coverImage}
                 alt={title}
-                className="w-full h-48 object-cover"
+                className="w-full h-48"
                 />
                 <div className="absolute top-2 right-2 bg-green-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md">
                 {rating}
@@ -37,7 +40,9 @@ const HighRatingCard = ({review}) => {
                 <div>
                 <span className="badge badge-neutral">{genre}</span>
                 </div>
-
+                <p className='text-sm opacity-70 font-semibold'>
+                    Reviewed by { userName}
+                </p>
                 <p className="text-sm text-gray-600 line-clamp-3 py-2">
                 {description.slice(0, 100)}.....
                 </p>
@@ -53,4 +58,4 @@ const HighRatingCard = ({review}) => {
     );
 }
 
-export default HighRatingCard
+export default ReviewCard;

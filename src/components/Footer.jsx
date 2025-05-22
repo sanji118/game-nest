@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Link, useLoaderData } from 'react-router-dom'
+import { AuthContext } from '../Provider/AuthProvider'
 
 const Footer = () => {
+  const {user} = useContext(AuthContext);
   return (
     <>
-    <footer class="footer mt-10 sm:footer-horizontal bg-violet-900 text-white opacity-90 p-10">
+    <footer class="footer mt-10 sm:footer-horizontal bg-[#231932] text-white opacity-90 p-10">
       <nav>
-        <h6 class="footer-title">Services</h6>
-        <a class="link link-hover">Branding</a>
-        <a class="link link-hover">Design</a>
-        <a class="link link-hover">Marketing</a>
-        <a class="link link-hover">Advertisement</a>
+        <h6 class="footer-title">Quick Links</h6>
+        <Link to={'/'} class="link link-hover">Home</Link>
+        <Link to={'/reviews'} class="link link-hover">All Reviews</Link>
+        <Link to={user? '/addReview' : '/login'} class="link link-hover">Add reviews</Link>
+        {
+          user && (
+            <>
+            <Link to={'/myReviews'} class="link link-hover">My reviews</Link>
+            </>
+          )
+        }
       </nav>
       <nav>
         <h6 class="footer-title">Company</h6>
@@ -28,10 +37,10 @@ const Footer = () => {
     <footer class="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
       <aside class="grid-flow-col items-center">
         {/**Logo */}
-        <p>
-          <span className='text-violet-900 font-bold'>GAME NEST </span>
+        <p className='w-1/2'>
+          <span className='text-violet-900 font-bold text-2xl'>GAME NEST </span>
           <br />
-          Providing reliable tech since 1992
+          Your go-to platform for honest game reviews and recommendations. Join our community of passionate gamers who share their experiences and discover your next favorite game.
         </p>
       </aside>
       <nav class="md:place-self-center md:justify-self-end">
