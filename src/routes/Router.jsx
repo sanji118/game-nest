@@ -45,7 +45,8 @@ export const Router = createBrowserRouter([
     },
     {
         path: '/updateReview/:id',
-        element: <UpdateReview></UpdateReview>
+        element: <UpdateReview></UpdateReview>,
+        loader: ({params})=> fetch(`http://localhost:5000/reviews/${params.id}`)
     },
     {
         path: '/myWatchlist',
