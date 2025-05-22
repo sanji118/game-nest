@@ -37,7 +37,7 @@ const Footer = () => {
     <footer class="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
       <aside class="grid-flow-col items-center">
         {/**Logo */}
-        <p className='w-1/2'>
+        <p className='md:w-1/2'>
           <span className='text-violet-900 font-bold text-2xl'>GAME NEST </span>
           <br />
           Your go-to platform for honest game reviews and recommendations. Join our community of passionate gamers who share their experiences and discover your next favorite game.

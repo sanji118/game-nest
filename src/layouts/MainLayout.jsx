@@ -14,12 +14,14 @@ const MainLayout = () => {
   return (
     <div>
       <Navbar></Navbar>
+      <div className='py-14'>
       <Banner></Banner>
       <HighestRating reviews={loadedReviews}></HighestRating>
       <GenreTrending reviews={loadedReviews}></GenreTrending>
       {
         !user && <JoinCommunity></JoinCommunity>
       }
+      </div>
       <Footer></Footer>
     </div>
   )

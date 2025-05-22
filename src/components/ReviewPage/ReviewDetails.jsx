@@ -8,9 +8,11 @@ const ReviewDetails = () => {
   const review = useLoaderData();
   const formatted = format(new Date(review.date), "d MMMM yyyy");
   return (
-    <div className='bg-gray-50'>
+    <>
     <Navbar ></Navbar>
-    <div className="max-w-2xl mx-auto rounded-xl shadow-xl overflow-hidden bg-white my-20">
+    <div className='bg-gray-50 pt-40'>
+    
+    <div className="max-w-2xl mx-auto rounded-xl shadow-xl overflow-hidden bg-white mb-20">
       
       <div className="relative">
         <img
@@ -56,7 +58,7 @@ const ReviewDetails = () => {
     </div>
     <Link to={'/reviews'}><button className='text-violet-700 flex items-center gap-2 p-5'><FaArrowLeft></FaArrowLeft> Back to reviews</button></Link>
     <Footer/> 
-    </div>
+    </div></>
   );
 };
 

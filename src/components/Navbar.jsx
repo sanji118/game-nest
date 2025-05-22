@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <>
     {/**desktop Navbar */}
-    <div class="navbar bg-base-100 shadow-sm">
+    <div class="navbar bg-base-100 shadow-sm md:fixed md:z-10">
         <div class="flex-1">
             <img src="https://i.ibb.co/8gTFHCdb/game-nest-removebg-preview.png" alt="GameNest-logo" className="w-20 h-20"/>
         </div>
@@ -96,8 +96,8 @@ const Navbar = () => {
                     </div>
                 ) : (
                     <div className="flex flex-col space-y-3">
-                    <div className="flex items-center gap-2">
-                        <img src={user?.photoURL} alt="" className="rounded-full w-10 h-10" /><p>{user.displayName}</p>
+                    <div class="tooltip tooltip-open tooltip-right w-10 tooltip-success" data-tip={`${user.displayName}`}>
+                        <img src={user?.photoURL} alt="" className="rounded-full w-10 h-10" />
                     </div>
                     <NavLink onClick={logout} className={'font-semibold text-violet-600'}>LogOut</NavLink>
                     </div>
