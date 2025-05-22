@@ -15,15 +15,16 @@ const AddReviews = () => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
-    const image = form.coverUrl.value;
-    const rating = form.rating.value;
+    const coverImage = form.coverUrl.value;
+    const rating = parseFloat(form.rating.value);
     const year = form.year.value;
     const genre = form.genre.value;
-    const email = form.email.value;
+    const userEmail = form.email.value;
     const userName = form.username.value;
     const description = form.description.value;
+    const trending = rating >= 8.5;
     const date = format(submitted, "d MMMM yyyy")
-    const review = {title, image,rating, year, genre, email, userName, description, date};
+    const review = {title, coverImage ,rating, year, genre, userEmail, userName, description, trending,  date};
     
 
     fetch('http://localhost:5000/reviews', {

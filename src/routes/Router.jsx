@@ -40,7 +40,8 @@ export const Router = createBrowserRouter([
     },
     {
         path:'/myReviews',
-        element: <PrivateProvider><MyReviews></MyReviews></PrivateProvider>
+        element: <PrivateProvider><MyReviews></MyReviews></PrivateProvider>,
+        loader: ()=> fetch('http://localhost:5000/reviews')
     },
     {
         path: '/updateReview/:id',

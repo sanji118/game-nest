@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const ReviewCard = ({review}) => {
-    const{ user} = useContext(AuthContext);
     const {
         _id,
         coverImage,
