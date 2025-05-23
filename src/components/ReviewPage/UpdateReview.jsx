@@ -42,13 +42,13 @@ const UpdateReview = () => {
     <>
       <Navbar />
       <div className="md:pt-24 px-5 md:mx-10 lg:mx-14">
-        <div className="max-w-4xl mx-auto mt-10 rounded-xl shadow-xl border border-gray-200 bg-white">
+        <div className="max-w-4xl mx-auto mt-10 rounded-xl shadow-xl border border-gray-200 bg-white dark:bg-inherit">
           <div className="bg-gradient-to-bl from-violet-600 to-indigo-600 rounded-t-xl p-5 text-white">
             <h2 className="text-4xl font-bold mb-1">Update Game Review</h2>
             <p className="mb-6">Edit your previous gaming review</p>
           </div>
 
-          <form onSubmit={handleUpdateReview} className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8">
+          <form onSubmit={handleUpdateReview} className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 ">
             <div>
               <label className="label font-semibold">Game Title *</label>
               <input
@@ -126,7 +126,7 @@ const UpdateReview = () => {
                 name="userEmail"
                 value={user.email}
                 readOnly
-                className="input input-bordered w-full bg-gray-100"
+                className="input input-bordered w-full bg-gray-100 dark:bg-inherit"
               />
             </div>
 
@@ -137,7 +137,7 @@ const UpdateReview = () => {
                 name="userName"
                 value={user.displayName}
                 readOnly
-                className="input input-bordered w-full bg-gray-100"
+                className="input input-bordered w-full bg-gray-100 dark:bg-inherit"
               />
             </div>
 

@@ -49,9 +49,9 @@ const ReviewDetails = () => {
   return (
     <>
     <Navbar ></Navbar>
-    <div className='bg-gray-50 pt-40'>
+    <div className='bg-gray-50 dark:bg-inherit pt-40'>
     
-    <div className="max-w-2xl mx-auto rounded-xl shadow-xl overflow-hidden bg-white mb-20">
+    <div className="max-w-2xl mx-auto rounded-xl shadow-xl overflow-hidden bg-white dark:bg-inherit border border-gray-300 mb-20">
       
       <div className="relative">
         <img

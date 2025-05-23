@@ -59,57 +59,57 @@ const MyWatchlist = () => {
         watchlist.length === 0 ? (
           <EmptyWatchlist/>
         ) : (
-          <div className="max-w-6xl mx-auto p-4">
-            {
-              watchlist.map(item => (
-                <div className="flex flex-col md:flex-row bg-base-100 rounded-xl shadow-md overflow-hidden border border-gray-200 mb-5">
-      
-
-                  <div className="relative md:w-1/3 w-full h-64 md:h-auto">
-                    <img
-                      src={item.coverImage}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent text-white p-3">
-                      <span className="bg-green-600 px-2 py-1 rounded text-sm font-semibold ">{item.rating}</span>
-                      <h2 className="text-lg font-semibold">{item.title}</h2>
-                    </div>
-                  </div>
-
-                  
-                  <div className="p-4 flex flex-col justify-between md:flex-row md:items-center w-full gap-4">
-                    <div className="flex-1 space-y-2">
-                      <div className="flex items-center gap-2">
-                        <span className="badge badge-neutral">{item.genre}</span>
-                        <p className="text-sm text-gray-500">{item.year}</p>
-                      </div>
-                      <p className="text-sm opacity-70 font-semibold">
-                        Reviewed by {item.userEmail?.split("@")[0]}
-                      </p>
-                      <p className="text-sm text-gray-600 line-clamp-3">
-                        {format(new Date(item.date), "d MMMM yyyy")}
-                      </p>
-                    </div>
-
-                    
-
-
-                    <div className="flex flex-col gap-2 md:w-40">
-                      <Link to={`/details/${item._id}`}>
-                        <button className="btn btn-sm bg-violet-600 text-white w-full">
-                          <FiEye className="mr-2" />Details
+          <div className="max-w-6xl mx-auto p-4 overflow-x-auto">
+            <table className="table w-full border border-gray-300">
+              <thead>
+                <tr className="bg-gray-200 text-gray-700 text-left">
+                  <th className="p-3">#</th>
+                  <th className="p-3">Cover Image</th>
+                  <th className="p-3">Title</th>
+                  <th className="p-3">Genre</th>
+                  <th className="p-3">Year</th>
+                  <th className="p-3">Rating</th>
+                  <th className="p-3">Reviewed By</th>
+                  <th className="p-3">Date</th>
+                  <th className="p-3">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  watchlist.map((item, index) => (
+                    <tr key={item._id} className="border-t border-gray-300 hover:bg-gray-700">
+                      <td className="p-3">{index + 1}</td>
+                      <td className="p-3">
+                        <img src={item.coverImage} alt={item.title} className="w-16 h-24 object-cover rounded" />
+                      </td>
+                      <td className="p-3 font-semibold">{item.title}</td>
+                      <td className="p-3">{item.genre}</td>
+                      <td className="p-3">{item.year}</td>
+                      <td className="p-3">
+                        <span className="bg-green-600 text-white text-sm px-2 py-1 rounded">{item.rating}</span>
+                      </td>
+                      <td className="p-3">{item.userEmail?.split('@')[0]}</td>
+                      <td className="p-3">{format(new Date(item.date), "d MMM yyyy")}</td>
+                      <td className="p-3 flex flex-col gap-3">
+                        <Link to={`/details/${item._id}`}>
+                          <button className="btn btn-sm bg-violet-600 text-white w-full">
+                            <FiEye className="mr-1" /> Details
+                          </button>
+                        </Link>
+                        <button
+                          onClick={() => handleRemove(item._id)}
+                          className="btn btn-sm border border-red-600 text-red-600"
+                        >
+                          <FiTrash2 className="mr-1" /> Remove
                         </button>
-                      </Link>
-                      <button onClick={()=> handleRemove(item._id)} className="btn btn-sm text-red-600 w-full border border-red-600">
-                        <FiTrash2 className="mr-2" /> Remove
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
           </div>
+
         )
       }</div>
       <Footer />

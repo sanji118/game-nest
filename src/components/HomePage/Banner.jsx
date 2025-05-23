@@ -51,7 +51,7 @@ const Banner = () => {
   })
 
   return (
-    <div className="carousel w-full min-h-screen my-10 relative overflow-hidden">
+    <div className="carousel w-full min-h-screen md:my-10 relative overflow-hidden">
       {slides.length > 0 && (
         <div
           key={currentIndex}

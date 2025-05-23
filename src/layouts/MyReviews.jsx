@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom"
+import { useLoaderData } from "react-router-dom"
 import { AuthContext } from "../Provider/AuthProvider";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import MyReviewCard from "../components/MyReviewCard";
 import { FiPlus } from "react-icons/fi";
 import NoReviewCard from "../components/NoReviewCard";
+import MyReviewTable from "../components/MyReviewTable";
 
 
 const MyReviews = () => {
@@ -21,20 +21,19 @@ const MyReviews = () => {
       <div className="p-6 md:pt-32 px-5 md:px-10 lg:px-14">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-600">My Reviews</h2>
-          <Link to={'/addReview'}><button className="btn bg-violet-600 hover:bg-purple-700 text-white">
+          <button className="btn bg-violet-600 hover:bg-purple-700 text-white">
             <FiPlus className="mr-2" /> Add New Review
-          </button></Link>
+          </button>
         </div>
         {
           reviews.length === 0 ? (
             <NoReviewCard></NoReviewCard>
           ) : (
             reviews.map(review =>(
-              <MyReviewCard 
-              key={review._id} 
+              <MyReviewTable 
+              key={review._id}
               setReviews={setReviews} 
-              review={review}
-              ></MyReviewCard>
+              review={review}/>
             ))
           )
         }
