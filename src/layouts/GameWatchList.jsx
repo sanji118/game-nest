@@ -55,7 +55,7 @@ const MyWatchlist = () => {
   return (
     <>
       <Navbar />
-      <div className='pt-36 bg-gray-50'>{
+      <div className='pt-36 bg-gray-50 dark:bg-inherit'>{
         watchlist.length === 0 ? (
           <EmptyWatchlist/>
         ) : (

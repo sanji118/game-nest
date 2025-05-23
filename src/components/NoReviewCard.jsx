@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const NoReviewCard = () => {
   return (
-    <div className="bg-base-100 shadow-md rounded-lg p-8 text-center">
+    <div className="bg-base-100 dark:border shadow-md rounded-lg p-8 text-center">
         <div className="text-5xl text-gray-400 mb-4 mx-auto w-fit">
           <FiAlertCircle />
         </div>

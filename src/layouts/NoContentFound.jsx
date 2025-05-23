@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const NoContentFound = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gaming-purple to-gaming-blue p-4 my-10">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gaming-purple to-gaming-blue p-4 my-10 ">
       <div className="max-w-md w-full bg-white dark:bg-gaming-dark rounded-lg shadow-xl overflow-hidden">
         <div className="p-8 text-center">
           <h1 className="text-9xl font-bold text-gaming-purple dark:text-gaming-neon">404</h1>

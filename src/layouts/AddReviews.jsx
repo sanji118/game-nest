@@ -56,8 +56,8 @@ const AddReviews = () => {
             <p className="mb-6">Share your gaming experience with the community</p>
           </div>
 
-          <form onSubmit={handleAddReview} className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8">
-            {/* Game Title */}
+          <form onSubmit={handleAddReview} className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 dark:bg-gray-400">
+           
             <div>
               <label className="label font-semibold">Game Title *</label>
               <input
@@ -69,7 +69,7 @@ const AddReviews = () => {
               />
             </div>
 
-            {/* Game Cover Image URL */}
+            
             <div>
               <label className="label font-semibold">Game Cover Image URL *</label>
               <input
@@ -81,7 +81,7 @@ const AddReviews = () => {
               />
             </div>
 
-            {/* Rating */}
+            
             <div>
               <label className="label font-semibold">Rating (1–10) *</label>
               <div className="flex items-center gap-1 flex-wrap">
@@ -102,7 +102,7 @@ const AddReviews = () => {
               </div>
             </div>
 
-            {/* Publishing Year */}
+            
             <div>
               <label className="label font-semibold">Publishing Year *</label>
               <input
@@ -114,7 +114,7 @@ const AddReviews = () => {
               />
             </div>
 
-            {/* Genre Dropdown */}
+            
             <div>
               <label className="label font-semibold">Genre *</label>
               <select name="genre" className="select select-bordered w-full" required>
@@ -128,31 +128,31 @@ const AddReviews = () => {
               </select>
             </div>
 
-            {/* User Email (Read-only) */}
+            
             <div>
               <label className="label font-semibold">User Email</label>
               <input
                 type="email"
                 name="email"
                 value={user.email}
-                className="input input-bordered w-full bg-gray-100"
+                className="input input-bordered w-full bg-gray-100 dark:bg-gray-900"
                 readOnly
               />
             </div>
 
-            {/* User Name (Read-only) */}
+            
             <div className="md:col-span-2">
               <label className="label font-semibold">User Name</label>
               <input
                 type="text"
                 name="username"
                 value={user.displayName}
-                className="input input-bordered w-full bg-gray-100"
+                className="input input-bordered w-full bg-gray-100 dark:bg-gray-900"
                 readOnly
               />
             </div>
 
-            {/* Review Description */}
+            
             <div className="md:col-span-2">
               <label className="label font-semibold">Review Description *</label>
               <textarea
@@ -164,7 +164,7 @@ const AddReviews = () => {
               ></textarea>
             </div>
 
-            {/* Buttons */}
+            
             <div className="md:col-span-2 flex justify-end gap-4">
               <button type="submit" className="btn bg-violet-600 border-none text-white">
                 Submit Review

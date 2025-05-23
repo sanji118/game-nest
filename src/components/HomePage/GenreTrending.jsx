@@ -24,7 +24,7 @@ const GenreTrending = ({ reviews }) => {
           <button
             onClick={() => setSelectedGenre(null)}
             className={`px-4 py-2 rounded ${
-              selectedGenre === null ? 'bg-violet-500 text-white' : 'bg-gray-200'
+              selectedGenre === null ? 'bg-violet-500 text-white' : 'bg-gray-200 text-black'
             }`}
           >
             All
@@ -34,7 +34,7 @@ const GenreTrending = ({ reviews }) => {
               key={genre}
               onClick={() => setSelectedGenre(genre)}
               className={`px-4 py-2 rounded hover:text-violet-500 ${
-                selectedGenre === genre ? 'bg-violet-500 text-white' : 'bg-gray-200'
+                selectedGenre === genre ? 'bg-violet-500 text-white' : 'bg-gray-200 dark:text-black'
               }`}
             >
               {genre}
