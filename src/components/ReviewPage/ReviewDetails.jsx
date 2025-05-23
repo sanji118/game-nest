@@ -4,35 +4,43 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { format } from "date-fns";
 import Swal from 'sweetalert2';
+import { useEffect, useState } from 'react';
+
+
 
 const ReviewDetails = () => {
   const review = useLoaderData();
   const formatted = format(new Date(review.date), "d MMMM yyyy");
+  const [isInWatchlist, setIsInWatchlist] = useState(false);
 
 
+  const handleAddToWatchlist = () => {
+  const { title, coverImage, rating, year, genre, userName, trending, date } = review;
+  const watchlist = { title, coverImage, rating, year, genre, userName, trending, date };
 
-
-  const handleAddToWatchlist = (username) =>{
-    const {title, coverImage ,rating, year, genre, userName, trending,  date} = review;
-    const watchlist = {title, coverImage, rating, year, genre, userName, trending,  date}
-    fetch('http://localhost:5000/api/watchlist', {
-      method: 'POST',
-      headers: {
-        'content-type' : 'application/json'
-      },
-      body : JSON.stringify(watchlist)
-    })
+  fetch('http://localhost:5000/api/watchlist', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(watchlist)
+  })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       Swal.fire({
         title: "Success!",
-        text: "Your saved this reivew.",
+        text: "You saved this review.",
         icon: "success",
         draggable: true
       });
+      
+      setIsInWatchlist(true);
     })
-  }
+    .catch(error => {
+      console.error("Error adding to watchlist:", error);
+    });
+};
+
 
 
 
@@ -74,10 +82,14 @@ const ReviewDetails = () => {
               <p className="text-sm text-gray-400">{formatted}</p>
             </div>
           </div>
-          <Link><button onClick={()=> handleAddToWatchlist(review.userName)} className="btn bg-violet-600 border-none gap-2 text-white">
+          <button
+            onClick={handleAddToWatchlist}
+            className="btn bg-violet-600 border-none gap-2 text-white"
+            disabled={isInWatchlist}
+            >
             <FaBookmark />
-            Add to Watchlist
-          </button></Link>
+            {isInWatchlist ? "Already Added" : "Add to Watchlist"}
+          </button>
         </div>
 
         

@@ -5,10 +5,13 @@ import EmptyWatchlist from '../components/EmptyWatchlist';
 import { FiEye, FiTrash2 } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
+import Swal from 'sweetalert2';
 
 
 const MyWatchlist = () => {
   const [watchlist, setWatchlist] = useState([]);
+  const [updatedWatchlist, setUpdatedWatchlist] = useState(watchlist);
+
 
   useEffect(()=>{
     fetch('http://localhost:5000/api/watchlist')
@@ -17,7 +20,37 @@ const MyWatchlist = () => {
       setWatchlist(data);
     })
   }, [])
-  console.log(watchlist)
+
+
+  const handleRemove = id =>{
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, remove it!"
+        }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`http://localhost:5000/api/watchlist/${id}`,{
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+              console.log(data)
+                if(data.deletedCount > 0){
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                    setWatchlist(prev => prev.filter(listItem => listItem._id !== id));
+                }
+            })
+        }
+    });
+  }
   
   return (
     <>
@@ -68,8 +101,8 @@ const MyWatchlist = () => {
                           <FiEye className="mr-2" />Details
                         </button>
                       </Link>
-                      <button onClick={()=> handleDelete(_id)} className="btn btn-sm bg-red-600 text-white w-full">
-                        <FiTrash2 className="mr-2" /> Delete
+                      <button onClick={()=> handleRemove(item._id)} className="btn btn-sm text-red-600 w-full border border-red-600">
+                        <FiTrash2 className="mr-2" /> Remove
                       </button>
                     </div>
                   </div>
