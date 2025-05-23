@@ -5,7 +5,8 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const AllReviews = () => {
-  const reviews = useLoaderData();
+  const loadedData = useLoaderData();
+  const reviews = Array.isArray(loadedData)? loadedData : [];
   const [displayedReviews, setDisplayedReviews] = useState(reviews);
   const [sortBy, setSortBy] = useState('');
   const [filterGenre, setFilterGenre] = useState('');
@@ -13,12 +14,12 @@ const AllReviews = () => {
   useEffect(() => {
     let updated = [...reviews];
 
-    // Filter by genre
+    
     if (filterGenre) {
-      updated = updated.filter(r => r.genre.toLowerCase() === filterGenre.toLowerCase());
+      updated = updated?.filter(r => r.genre.toLowerCase() === filterGenre.toLowerCase());
     }
 
-    // Sort
+    
     if (sortBy === 'rating') {
       updated.sort((a, b) => b.rating - a.rating);
     } else if (sortBy === 'year') {
@@ -26,7 +27,7 @@ const AllReviews = () => {
     }
 
     setDisplayedReviews(updated);
-  }, [sortBy, filterGenre, reviews]);
+  }, []);
 
   
   const genres = [...new Set(reviews.map(r => r.genre))];
@@ -40,9 +41,9 @@ const AllReviews = () => {
         </h1>
 
         
-        <div className='flex flex-col md:flex-row justify-center items-center gap-4 mb-8'>
+        <div className='flex flex-col md:flex-row justify-center items-center gap-4 mb-8 dark:text-black'>
           <select 
-            className='border p-2 rounded-md '
+            className='border p-2 rounded-md'
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
@@ -59,7 +60,7 @@ const AllReviews = () => {
             <option value=''>Filter by Genre</option>
             {
               genres.map((g, idx) => (
-                <option key={idx} value={g}>{g}</option>
+                <option key={idx} value={g} >{g}</option>
               ))
             }
           </select>

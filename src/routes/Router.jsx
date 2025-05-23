@@ -5,11 +5,11 @@ import ReviewDetails from "../components/ReviewPage/ReviewDetails";
 import AllReviews from "../layouts/AllReviews";
 import MyReviews from "../layouts/MyReviews";
 import UpdateReview from "../components/ReviewPage/UpdateReview";
-import GameWatchList from "../layouts/GameWatchList";
 import NoContentFound from "../layouts/NoContentFound";
 import Login from "../auth/Login";
 import Register from "../auth/Register";
 import PrivateProvider from "../Provider/PrivateProvider";
+import MyWatchlist from "../layouts/MyWatchlist";
 
 
 
@@ -31,7 +31,8 @@ export const Router = createBrowserRouter([
     {
         path: '/reviews',
         element: <AllReviews></AllReviews>,
-        loader: ()=> fetch('https://game-nest-server.vercel.app/reviews')
+        loader: () => fetch('https://game-nest-server.vercel.app/reviews')
+
     },
     {
         path:'/details/:id',
@@ -50,7 +51,7 @@ export const Router = createBrowserRouter([
     },
     {
         path: '/myWatchlist',
-        element: <PrivateProvider><GameWatchList></GameWatchList></PrivateProvider>
+        element: <PrivateProvider><MyWatchlist></MyWatchlist></PrivateProvider>
     },
     {
         path: '/login',
