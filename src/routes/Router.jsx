@@ -18,7 +18,7 @@ export const Router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout/>,
-        loader: ()=> fetch('http://localhost:5000/reviews')
+        loader: ()=> fetch('https://game-nest-server.vercel.app/reviews')
     },
     {
         path: '/addReview',
@@ -31,22 +31,22 @@ export const Router = createBrowserRouter([
     {
         path: '/reviews',
         element: <AllReviews></AllReviews>,
-        loader: ()=> fetch('http://localhost:5000/reviews')
+        loader: ()=> fetch('https://game-nest-server.vercel.app/reviews')
     },
     {
         path:'/details/:id',
         element: <ReviewDetails></ReviewDetails>,
-        loader: ({params})=> fetch(`http://localhost:5000/reviews/${params.id}`)
+        loader: ({params})=> fetch(`https://game-nest-server.vercel.app/reviews/${params.id}`)
     },
     {
         path:'/myReviews',
         element: <PrivateProvider><MyReviews></MyReviews></PrivateProvider>,
-        loader: ()=> fetch('http://localhost:5000/reviews')
+        loader: ()=> fetch('https://game-nest-server.vercel.app/reviews')
     },
     {
         path: '/updateReview/:id',
         element: <UpdateReview></UpdateReview>,
-        loader: ({params})=> fetch(`http://localhost:5000/reviews/${params.id}`)
+        loader: ({params})=> fetch(`https://game-nest-server.vercel.app/reviews/${params.id}`)
     },
     {
         path: '/myWatchlist',

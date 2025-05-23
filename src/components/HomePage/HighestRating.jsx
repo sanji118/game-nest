@@ -6,7 +6,7 @@ const HighestRating = () => {
   const [highrated, setHighrated] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/highest-rated-reviews')
+    fetch('https://game-nest-server.vercel.app/highest-rated-reviews')
       .then(res => res.json())
       .then(data => setHighrated(data));
   }, []);

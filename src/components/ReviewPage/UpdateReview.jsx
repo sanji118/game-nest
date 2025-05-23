@@ -24,7 +24,7 @@ const UpdateReview = () => {
       updatedRating
     };
 
-    fetch(`http://localhost:5000/reviews/${_id}`, {
+    fetch(`https://game-nest-server.vercel.app/reviews/${_id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(updatedReview),

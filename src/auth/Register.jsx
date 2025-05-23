@@ -38,7 +38,7 @@ const Register = () => {
       })
       .catch(error =>{
         const errorMessage = error.message;
-        console.log(errorMessage);
+        // console.log(errorMessage);
       })
   }
 
@@ -52,7 +52,7 @@ const Register = () => {
     })
     .catch(error =>{
       const errorMessage = error.message;
-      console.log(errorMessage)
+      // console.log(errorMessage)
     })
   }
   return (

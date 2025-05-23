@@ -18,7 +18,7 @@ const ReviewDetails = () => {
   const { title, coverImage, rating, year, genre, userName, trending, date } = review;
   const watchlist = { title, coverImage, rating, year, genre, userName, trending, date };
 
-  fetch('http://localhost:5000/api/watchlist', {
+  fetch('https://game-nest-server.vercel.app/api/watchlist', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

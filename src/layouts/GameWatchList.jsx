@@ -14,7 +14,7 @@ const MyWatchlist = () => {
 
 
   useEffect(()=>{
-    fetch('http://localhost:5000/api/watchlist')
+    fetch('https://game-nest-server.vercel.app/api/watchlist')
     .then(res => res.json())
     .then(data => {
       setWatchlist(data);
@@ -33,12 +33,12 @@ const MyWatchlist = () => {
         confirmButtonText: "Yes, remove it!"
         }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`http://localhost:5000/api/watchlist/${id}`,{
+            fetch(`https://game-nest-server.vercel.app/api/watchlist/${id}`,{
                 method: 'DELETE'
             })
             .then(res => res.json())
             .then(data => {
-              console.log(data)
+              // console.log(data)
                 if(data.deletedCount > 0){
                     Swal.fire({
                         title: "Deleted!",
