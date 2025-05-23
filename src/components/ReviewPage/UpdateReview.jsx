@@ -10,6 +10,7 @@ const UpdateReview = () => {
   const {_id, title, coverImage ,rating, year, genre, userEmail, userName, description, trending,  date} = useLoaderData();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const [updatedRating, setUpdatedRating] = useState(rating);
 
 
   const handleUpdateReview = (e) => {
@@ -20,7 +21,7 @@ const UpdateReview = () => {
       ...Object.fromEntries(formdata.entries()),
       trending,
       date,
-      rating
+      updatedRating
     };
 
     fetch(`http://localhost:5000/reviews/${_id}`, {
@@ -79,12 +80,13 @@ const UpdateReview = () => {
                   return (
                     <FaStar
                       key={star}
-                      className={`cursor-pointer text-xl ${star <= rating ? "text-yellow-400" : "text-gray-300"}`}
+                      onClick={()=> setUpdatedRating(star)}
+                      className={`cursor-pointer text-xl ${star <= updatedRating ? "text-yellow-400" : "text-gray-300"}`}
                     />
                   );
                 })}
-                <input type="hidden" name="rating" defaultValue={rating} />
-                <span className="ml-2 font-medium">{rating}.0</span>
+                <input type="hidden" name="rating" value={updatedRating} />
+                <span className="ml-2 font-medium">{updatedRating}.0</span>
               </div>
             </div>
 
