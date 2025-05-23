@@ -3,43 +3,62 @@ import { Link, useLoaderData } from 'react-router-dom';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { format } from "date-fns";
-import Swal from 'sweetalert2';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
+import { toast } from 'react-toastify';
 
 
 
 const ReviewDetails = () => {
+  const {user} = useContext(AuthContext)
   const review = useLoaderData();
   const formatted = format(new Date(review.date), "d MMMM yyyy");
   const [isInWatchlist, setIsInWatchlist] = useState(false);
 
 
-  const handleAddToWatchlist = () => {
-  const { title, coverImage, rating, year, genre, userName, trending, date } = review;
-  const watchlist = { title, coverImage, rating, year, genre, userName, trending, date };
 
-  fetch('https://game-nest-server.vercel.app/api/watchlist', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(watchlist)
-  })
-    .then(res => res.json())
-    .then(data => {
-      Swal.fire({
-        title: "Success!",
-        text: "You saved this review.",
-        icon: "success",
-        draggable: true
+
+  useEffect(() => {
+  const checkWatchlist = async () => {
+    const res = await fetch(`https://game-nest-server.vercel.app/watchlist?email=${user?.email}`);
+    const data = await res.json();
+    const exists = data.find(item => item.reviewId === review._id);
+    setIsInWatchlist(!!exists);
+  };
+
+  checkWatchlist();
+}, [review._id, user?.email]);
+
+
+  const handleAddToWatchlist = async () => {
+    const { _id: reviewId, title, coverImage, rating, year, genre, userEmail, userName, trending, date } = review;
+    const watchlist = { reviewId, title, coverImage, rating, year, genre, userName, trending, date, userEmail: user?.email };
+
+    try {
+      const response = await fetch('https://game-nest-server.vercel.app/watchlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(watchlist),
       });
-      
-      setIsInWatchlist(true);
-    })
-    .catch(error => {
-      console.error("Error adding to watchlist:", error);
-    });
-};
+
+      if (response.status === 409) {
+        toast.warn('Already in watchlist');
+        setIsInWatchlist(true);
+      } else if (response.ok) {
+        toast.success('Added to watchlist!');
+        setIsInWatchlist(true);
+      } else {
+        toast.error('Failed to add to watchlist');
+      }
+    } catch (error) {
+      console.error('Error adding to watchlist:', error);
+      toast.error('An error occurred');
+    }
+  };
+
+
 
 
 
@@ -84,11 +103,14 @@ const ReviewDetails = () => {
           </div>
           <button
             onClick={handleAddToWatchlist}
-            className="btn bg-violet-600 border-none gap-2 text-white"
             disabled={isInWatchlist}
-            >
+            className={`flex items-center gap-2 px-4 py-2 rounded transition 
+              ${isInWatchlist
+                ? 'bg-gray-400 cursor-not-allowed text-white'
+                : 'bg-purple-600 hover:bg-purple-700 text-white'}`}
+          >
             <FaBookmark />
-            {isInWatchlist ? "Already Added" : "Add to Watchlist"}
+            {isInWatchlist ? 'Added to Watchlist' : 'Add to Watchlist'}
           </button>
         </div>
 

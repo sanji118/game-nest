@@ -56,10 +56,10 @@ const AddReviews = () => {
             <p className="mb-6">Share your gaming experience with the community</p>
           </div>
 
-          <form onSubmit={handleAddReview} className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 dark:bg-gray-400">
+          <form onSubmit={handleAddReview} className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8">
            
             <div>
-              <label className="label font-semibold">Game Title *</label>
+              <label className="label font-semibold text-black">Game Title *</label>
               <input
                 type="text"
                 name="title"
@@ -71,7 +71,7 @@ const AddReviews = () => {
 
             
             <div>
-              <label className="label font-semibold">Game Cover Image URL *</label>
+              <label className="label font-semibold text-black placeholder:text-black">Game Cover Image URL *</label>
               <input
                 type="url"
                 name="coverUrl"
@@ -83,7 +83,7 @@ const AddReviews = () => {
 
             
             <div>
-              <label className="label font-semibold">Rating (1–10) *</label>
+              <label className="label font-semibold text-black">Rating (1–10) *</label>
               <div className="flex items-center gap-1 flex-wrap">
                 {[...Array(10)].map((_, i) => {
                   const star = i + 1;
@@ -104,7 +104,7 @@ const AddReviews = () => {
 
             
             <div>
-              <label className="label font-semibold">Publishing Year *</label>
+              <label className="label font-semibold text-black">Publishing Year *</label>
               <input
                 type="number"
                 name="year"
@@ -116,7 +116,7 @@ const AddReviews = () => {
 
             
             <div>
-              <label className="label font-semibold">Genre *</label>
+              <label className="label font-semibold text-black">Genre *</label>
               <select name="genre" className="select select-bordered w-full" required>
                 <option value="">Select Genre</option>
                 <option value="Action">Action</option>
@@ -130,24 +130,24 @@ const AddReviews = () => {
 
             
             <div>
-              <label className="label font-semibold">User Email</label>
+              <label className="label font-semibold text-black">User Email</label>
               <input
                 type="email"
                 name="email"
                 value={user.email}
-                className="input input-bordered w-full bg-gray-100 dark:bg-gray-900"
+                className="input input-bordered w-full bg-gray-400"
                 readOnly
               />
             </div>
 
             
             <div className="md:col-span-2">
-              <label className="label font-semibold">User Name</label>
+              <label className="label font-semibold text-black">User Name</label>
               <input
                 type="text"
                 name="username"
                 value={user.displayName}
-                className="input input-bordered w-full bg-gray-100 dark:bg-gray-900"
+                className="input input-bordered w-full bg-gray-400"
                 readOnly
               />
             </div>
@@ -169,7 +169,7 @@ const AddReviews = () => {
               <button type="submit" className="btn bg-violet-600 border-none text-white">
                 Submit Review
               </button>
-              <button type="button" className="btn btn-outline">Cancel</button>
+              <button type="button" className="btn btn-outline bg-gray-400">Cancel</button>
             </div>
           </form>
         </div>

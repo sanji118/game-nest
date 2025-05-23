@@ -10,11 +10,11 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 const MyWatchlist = () => {
   const [watchlist, setWatchlist] = useState([]);
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext) 
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://game-nest-server.vercel.app/api/watchlist?email=${user.email}`)
+      fetch(`https://game-nest-server.vercel.app/watchlist?email=${user.email}`)
         .then(res => res.json())
         .then(data => {
           setWatchlist(data);
@@ -33,7 +33,7 @@ const MyWatchlist = () => {
       confirmButtonText: "Yes, remove it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://game-nest-server.vercel.app/api/watchlist/${id}`, {
+        fetch(`https://game-nest-server.vercel.app/watchlist/${id}`, {
           method: 'DELETE'
         })
           .then(res => res.json())
@@ -58,7 +58,6 @@ const MyWatchlist = () => {
             <table className="table w-full border border-gray-300">
               <thead>
                 <tr className="bg-gray-200 text-gray-700 text-left">
-                  <th className="p-3">#</th>
                   <th className="p-3">Cover Image</th>
                   <th className="p-3">Title</th>
                   <th className="p-3">Genre</th>
@@ -70,9 +69,8 @@ const MyWatchlist = () => {
                 </tr>
               </thead>
               <tbody>
-                {watchlist.map((item, index) => (
+                {watchlist.map((item) => (
                   <tr key={item._id} className="border-t border-gray-300 hover:bg-gray-700">
-                    <td className="p-3">{index + 1}</td>
                     <td className="p-3">
                       <img src={item.coverImage} alt={item.title} className="w-16 h-24 object-cover rounded" />
                     </td>
